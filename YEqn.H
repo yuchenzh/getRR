@@ -42,7 +42,7 @@ if (writeFlameSpeed)
             IOobject::AUTO_WRITE
         ),
         mesh,
-        dimVelocity
+        dimensionedScalar(dimVelocity,0)
     );
     volScalarField diffusionTerm
     (
@@ -55,7 +55,7 @@ if (writeFlameSpeed)
             IOobject::AUTO_WRITE
         ),
         mesh,
-        dimMass/dimVolume/dimTime
+        dimensionedScalar(dimMass/dimVolume/dimTime,0)
     );
     volScalarField sourceTerm
     (
@@ -68,7 +68,7 @@ if (writeFlameSpeed)
             IOobject::AUTO_WRITE
         ),
         mesh,
-        dimMass/dimVolume/dimTime
+        dimensionedScalar(dimMass/dimVolume/dimTime,0)
     );
 
     thermo.correct();
@@ -106,7 +106,6 @@ if (writeFlameSpeed)
             flameSpeed.write();
             diffusionTerm.write();
             sourceTerm.write();
-            magGradY.write();
             
         }
 
